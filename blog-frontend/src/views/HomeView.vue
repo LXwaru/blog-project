@@ -1,9 +1,15 @@
-<script setup lang="ts">
-import Greeting from '../components/Greeting.vue'
+<script>
+import axios from "axios"
+export default {
+    name: "app",
+    async mounted() 
+    {
+        let result = await axios.get("http://localhost:8000/api/users/")
+        console.warn(result)
+    }
+}
 </script>
 
 <template>
-  <main>
-    <Greeting />
-  </main>
+    <h1>all the users</h1>
 </template>
