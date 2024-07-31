@@ -16,8 +16,8 @@ export default {
     <div>
         <h2>{{message}}</h2>
         <br>
-        <input placeholder="username" /><br>
-        <input placeholder="password" /><br>
+        <input id="username" placeholder="username" /><br>
+        <input id="password" placeholder="password" /><br>
         <button>{{ message }}</button><br>
         <button>{{ createAccount }}</button>
     </div>
