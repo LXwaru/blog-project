@@ -13,14 +13,14 @@ export default {
 </script>
 
 <template>
-    <div>
+
         <h2>{{message}}</h2>
         <br>
         <input id="username" placeholder="username" /><br>
         <input id="password" placeholder="password" /><br>
         <button>{{ message }}</button><br>
         <button>{{ createAccount }}</button>
-    </div>
+
 </template>
 
 

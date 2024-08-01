@@ -29,3 +29,12 @@ def read_items_by_owner_id(
 ):
     items = crud.get_items_by_owner_id(db=db, owner_id=owner_id)
     return items
+
+@router.get("/api/items/", response_model=list[schemas.Item])
+def read_items(
+    skip: int = 0, 
+    limit: int = 100, 
+    db: Session = Depends(utils_db.get_db)
+):
+    items = crud.get_items(db, skip=skip, limit=limit)
+    return items

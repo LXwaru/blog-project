@@ -8,10 +8,10 @@ import Login from './components/Login.vue'
     
     <div class="wrapper">
       <Login />
-      <nav>
+      <!-- <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
-      </nav>
+      </nav> -->
     </div>
   </header>
 
