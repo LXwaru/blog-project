@@ -3,23 +3,21 @@
 export default {
     data() {
         return {
-            message: "Login",
             username: "username", 
             password: "password",
-            createAccount: "create account",
         }
     }
 }
 </script>
 
 <template>
-
-        <h2>{{message}}</h2>
-        <br>
+    <div>
+        <h2>Login</h2>
         <input id="username" placeholder="username" /><br>
         <input id="password" placeholder="password" /><br>
-        <button>{{ message }}</button><br>
-        <button>{{ createAccount }}</button>
+        <button>Login</button><br>
+        <button>Create Account</button>
+    </div>
 
 </template>
 

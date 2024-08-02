@@ -1,39 +1,15 @@
 <template>
-    <div class="right-grid-item">
-        <table>
-            <thead>
-                <tr>
-                    <td>username</td>
-                    <td>active status</td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="account in accounts" :key="account.id">
-                    <td>{{ account.username }}</td>
-                    <td>{{ account.is_active }}</td>
-                </tr>
-            </tbody>
-        </table>
-        <table>
-            <thead>
-                <tr>
-                    <td>author</td>
-                    <td>title</td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="item in items" :key="item.id">
-                    <td>{{ item.owner.username }}</td>
-                    <td>{{ item.title }} -- {{ item.description }}</td>
-                </tr>
-            </tbody>
-        </table>
+    <div>
+        <h1>Welcome Dear Reader</h1>
+        <RouterLink to="../ListUsers">List of Authors</RouterLink>
+
     </div>
 </template>
 
 
 <script>
 import axios from "axios"
+import { RouterLink } from "vue-router";
 
 export default {
     name: "app",
