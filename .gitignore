@@ -1,3 +1,4 @@
 #everything that I download doesn't need to be push to git
 .venv
 node_modules
+__pycache__
