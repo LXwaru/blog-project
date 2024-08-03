@@ -25,8 +25,8 @@ export default {
     {
         let accountResult = await axios.get("http://localhost:8000/api/users/")
         let itemResult = await axios.get(`http://localhost:8000/api/items/`)
-        console.log(accountResult.data)
-        console.log(itemResult.data)
+        // console.log(accountResult.data)
+        // console.log(itemResult.data)
 
         this.accounts=accountResult.data
         this.items=itemResult.data

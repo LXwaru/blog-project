@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import ListUsers from '../views/ListUsers.vue'
+import ListBlogsByUser from '@/views/ListBlogsByUser.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -12,18 +14,13 @@ const router = createRouter({
     {
       path: '/ListUsers',
       name: 'ListUsers',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/ListUsers.vue')
+      component: ListUsers
     },
     {
-      path: '/listBlogsByUser',
+      path: '/listBlogsByUser/:userId',
       name: 'listBlogsByUser',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/ListBlogsByUser.vue')
+      component: ListBlogsByUser,
+      props: true
     }
   ]
 })
