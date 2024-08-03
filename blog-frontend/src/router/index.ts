@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import ListUsers from '../views/ListUsers.vue'
 import ListBlogsByUser from '@/views/ListBlogsByUser.vue'
+import DetailBlog from '@/views/DetailBlog.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -20,6 +21,12 @@ const router = createRouter({
       path: '/listBlogsByUser/:userId',
       name: 'listBlogsByUser',
       component: ListBlogsByUser,
+      props: true
+    },
+    {
+      path: '/DetailBlog/:itemId',
+      name: 'DetailBlog',
+      component: DetailBlog,
       props: true
     }
   ]

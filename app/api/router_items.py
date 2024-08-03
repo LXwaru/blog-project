@@ -38,3 +38,11 @@ def read_items(
 ):
     items = crud.get_items(db, skip=skip, limit=limit)
     return items
+
+@router.get("/api/item/{item_id}", response_model=schemas.Item)
+def read_one_item(
+    item_id: int,
+    db: Session = Depends(utils_db.get_db)
+):
+    item = crud.get_one_item(db, item_id=item_id)
+    return item

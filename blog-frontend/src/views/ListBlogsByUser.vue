@@ -1,8 +1,8 @@
 <template>
     <div>
         <h1>{{userId}}'s blogs</h1>
-        <p  v-for="blog in blogs" :key="blog.id">
-            <RouterLink to="/">{{ blog.title }}</RouterLink>    
+        <p  v-for="item in items" :key="item.id">
+            <RouterLink :to="{ name: 'DetailBlog', params: { itemId: item.id } }">{{ item.title }}</RouterLink>    
         </p>
 
     </div>
@@ -14,7 +14,8 @@ import axios from "axios"
 
 export default {
     name: "ListBlogsByUser",
-    props: {
+    props: 
+    {
         userId: {
             type: [Number, String], 
             required: true
@@ -22,7 +23,7 @@ export default {
     },
     data() {
         return {
-            blogs: []
+            items: []
 
         }
     },
@@ -31,13 +32,13 @@ export default {
         if (isNaN(this.userId)) {
             throw new Error("invalid user ID")
         }
-        let blogResults = await axios.get(`http://localhost:8000/api/users/${this.userId}/items/`, {
+        let itemResults = await axios.get(`http://localhost:8000/api/users/${this.userId}/items/`, {
             params: {
                 owner_id: userId
             }
         })
-            console.log(blogResults.data);
-            this.blogs = blogResults.data;
+            console.log(itemResults.data);
+            this.items = itemResults.data;
     }
 }
 </script>
