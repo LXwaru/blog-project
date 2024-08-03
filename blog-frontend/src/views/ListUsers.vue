@@ -1,8 +1,8 @@
 <template>
     <div>
         <h1>List of all Bloggers</h1>
-        <p  v-for="account in accounts" :key="account.id">
-            <RouterLink to="/">{{ account.username }}</RouterLink>    
+        <p  v-for="user in users" :key="user.id">
+            <RouterLink :to="{ name: 'listBlogsByUser', params: { userId: user.id } }">{{ user.username }}</RouterLink>    
         </p>
 
     </div>
@@ -14,25 +14,23 @@ import axios from "axios"
 import { RouterLink } from "vue-router";
 
 export default {
-    name: "app",
+    name: "ListUsers",
     data() 
     {
         return {
-            accounts:[],
-            items:[],
+            users:[],
 
         }
     },
     async mounted() 
-    {
-        let accountResult= await axios.get("http://localhost:8000/api/users/")
-        let itemResult = await axios.get(`http://localhost:8000/api/items/`)
-        console.log(accountResult.data)
-        console.log(itemResult.data)
-
-        this.accounts=accountResult.data
-        this.items=itemResult.data
-
+    {   
+        try {
+            let userResult= await axios.get("http://localhost:8000/api/users/")
+            console.log(userResult.data)
+            this.users=userResult.data
+        } catch (error) {
+            console.error('Error fetching users:', error)
+        }
     }
 }
 </script>

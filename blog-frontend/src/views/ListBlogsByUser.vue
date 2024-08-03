@@ -1,7 +1,7 @@
 <template>
     <div>
-        <h1>This particular bloggers blogs</h1>
-        <p  v-for="blog in blogs" :key="item.id">
+        <h1>{{userId}}'s blogs</h1>
+        <p  v-for="blog in blogs" :key="blog.id">
             <RouterLink to="/">{{ blog.title }}</RouterLink>    
         </p>
 
@@ -13,22 +13,31 @@
 import axios from "axios"
 
 export default {
-    name: "app",
-    data() 
-    {
+    name: "ListBlogsByUser",
+    props: {
+        userId: {
+            type: [Number, String], 
+            required: true
+        }
+    },
+    data() {
         return {
             blogs: []
 
         }
     },
     async mounted() {
-        try {
-            let blogResults = await axios.get("http://localhost:8000/api/users/1/items/");
+        const userId = Number(this.userId)
+        if (isNaN(this.userId)) {
+            throw new Error("invalid user ID")
+        }
+        let blogResults = await axios.get(`http://localhost:8000/api/users/${this.userId}/items/`, {
+            params: {
+                owner_id: userId
+            }
+        })
             console.log(blogResults.data);
             this.blogs = blogResults.data;
-        } catch (error) {
-            console.error("Error fetching blogs:", error.response ? error.response.data : error.message);
-        }
     }
 }
 </script>
