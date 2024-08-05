@@ -12,7 +12,7 @@ import axios from "axios"
 import { RouterLink } from "vue-router";
 
 export default {
-    name: "app",
+    name: "home",
     data() 
     {
         return {

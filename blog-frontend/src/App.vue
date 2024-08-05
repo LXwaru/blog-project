@@ -7,7 +7,7 @@ import Login from './components/Login.vue'
   <header>
     
     <div class="wrapper">
-      <!-- <Login /> -->
+      <Login />
       <nav>
         <RouterLink to="/">Home</RouterLink>
       </nav>

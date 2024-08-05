@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import ListUsers from '../views/ListUsers.vue'
 import ListBlogsByUser from '@/views/ListBlogsByUser.vue'
 import DetailBlog from '@/views/DetailBlog.vue'
+import CreateAccount from '../views/CreateAccount.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -28,6 +29,11 @@ const router = createRouter({
       name: 'DetailBlog',
       component: DetailBlog,
       props: true
+    },
+    {
+      path: '/CreateAccount',
+      name: 'CreateAccount',
+      component: CreateAccount
     }
   ]
 })
