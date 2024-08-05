@@ -64,6 +64,7 @@ export default {
     </div>
     <div v-else>
         <h1>Welcome, {{username}}</h1>
+        <RouterLink to="ListMyBlogs">My Blogs</RouterLink><br>
         <button @click="logout">logout</button>
     </div>
 

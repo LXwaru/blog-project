@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 import Login from './components/Login.vue'
+// import Navigation from './components/Navigation.vue'
 </script>
 
 <template>
@@ -10,6 +11,7 @@ import Login from './components/Login.vue'
       <Login />
       <nav>
         <RouterLink to="/">Home</RouterLink>
+          <!-- <Navigation /> -->
       </nav>
     </div>
   </header>
