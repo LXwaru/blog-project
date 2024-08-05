@@ -4,6 +4,8 @@ import ListUsers from '../views/ListUsers.vue'
 import ListBlogsByUser from '@/views/ListBlogsByUser.vue'
 import DetailBlog from '@/views/DetailBlog.vue'
 import CreateAccount from '../views/CreateAccount.vue'
+import ListMyBlogs from '../views/ListMyBlogs.vue'
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -34,6 +36,12 @@ const router = createRouter({
       path: '/CreateAccount',
       name: 'CreateAccount',
       component: CreateAccount
+    },
+    {
+      path: "/ListMyBlogs",
+      name: "ListMyBlogs",
+      component: ListMyBlogs,
+      props: true
     }
   ]
 })

@@ -1,10 +1,12 @@
 <template>
-    <div>
+    <div v-if="users.length > 0">
         <h1>List of all Bloggers</h1>
         <p  v-for="user in users" :key="user.id">
             <RouterLink :to="{ name: 'listBlogsByUser', params: { userId: user.id } }">{{ user.username }}</RouterLink>    
         </p>
-
+    </div>
+    <div v-else>
+        <h1>There are no authors here</h1>
     </div>
 </template>
 
