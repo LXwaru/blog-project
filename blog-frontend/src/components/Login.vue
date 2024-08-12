@@ -44,8 +44,10 @@ export default {
                 alert('An error occurred during login.');
             }
         },
-        logout() {
-            this.logoutUser();
+        async logout() {
+            await this.logoutUser();
+            alert('user logged out')
+            this.$router.push('/')
         }
     }
 };

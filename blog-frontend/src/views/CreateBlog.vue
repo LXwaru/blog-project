@@ -1,7 +1,7 @@
 <template>
     <form @submit.prevent="postBlog">
         <input v-model="title" id="title" placeholder="title" />
-        <input v-model="description" id="description" placeholder="your blog" />
+        <textarea v-model="description" id="description" placeholder="your blog" rows="15" cols="50"></textarea>
         <button type="submit">Submit Blog</button>
     </form>
 </template>
@@ -37,7 +37,6 @@
                 });
                 console.log("response data:", userDataResponse)
                 this.userData = userDataResponse.data
-                console.log(this.userData)
             } catch (error) {
                 console.error('Error creating blog', error)
                 this.error = error.message;
@@ -61,6 +60,9 @@
                     title: this.title,
                     description: this.description
                 }
+                console.log("blog created", blogData)
+                alert("blog successfully created")
+                this.$router.push('ListMyBlogs')
                 try {
                     const blogCreate = await axios.post(`http://localhost:8000/api/users/${this.userData.id}/items/`, blogData, {
                         headers: {
