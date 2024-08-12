@@ -63,7 +63,7 @@ export default {
             <RouterLink to="CreateAccount"> or Create Account</RouterLink>
         </form>
     </div>
-    <div v-else>
+    <div v-else class="some-space">
         <p>Welcome, {{ username }}! <button @click="logout">logout</button></p>
         
     </div>
@@ -71,3 +71,12 @@ export default {
 </template>
 
 
+<style>
+form {
+    padding: 25px;
+}
+
+.some-space {
+    padding: 25px;
+}
+</style>
