@@ -6,6 +6,7 @@ import DetailBlog from '@/views/DetailBlog.vue'
 import CreateAccount from '../views/CreateAccount.vue'
 import ListMyBlogs from '../views/ListMyBlogs.vue'
 import CreateBlog from '../views/CreateBlog.vue'
+import Navigation from '../components/Navigation.vue'
 
 
 const router = createRouter({
@@ -48,6 +49,11 @@ const router = createRouter({
       path: "/CreateBlog",
       name: "CreateBlog",
       component: CreateBlog
+    },
+    {
+      path: '/Navigation',
+      name: 'Navigation',
+      component: Navigation
     }
   ]
 })

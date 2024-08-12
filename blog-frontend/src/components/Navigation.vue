@@ -1,10 +1,39 @@
 <script>
-import Login from "../components/Login.vue"
-import HomeView from "@/views/HomeView.vue";
+import { RouterLink } from 'vue-router';
+import { mapGetters, mapActions } from 'vuex'
+
+export default {
+    name: 'Navigation',
+    computed: {
+        ...mapGetters(['user'])
+        }
+    }
+
 </script>
 
 
 <template>
-    <HomeView />
-    <Login />
+    <div v-if="user">
+        <nav>
+            <hr>
+            <RouterLink to="/">Home</RouterLink>
+            <hr>
+            <RouterLink to="ListMyBlogs">View / Edit My Blogs</RouterLink>
+            <hr>
+            <RouterLink to="CreateBlog">Write a New Blog</RouterLink>
+            <hr>
+            <RouterLink to="ListUsers">See All Authors</RouterLink>
+            <hr>
+        </nav>
+    </div>
+    <div v-else>
+        <nav>
+            <hr>
+            <RouterLink to="/">Home</RouterLink>
+            <hr>
+            <RouterLink to="ListUsers">See All Authors</RouterLink>
+            <hr>
+        </nav>
+    </div>
+
 </template>
