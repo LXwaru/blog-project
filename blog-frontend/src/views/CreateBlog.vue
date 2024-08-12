@@ -1,36 +1,78 @@
 <template>
-    <form>
-        <input v-model="blogTitle" id="blogTitle" placeholder="title" />
-        <input v-model="blogContent" id="blogContent" placeholder="your blog" />
+    <form @submit.prevent="postBlog">
+        <input v-model="title" id="title" placeholder="title" />
+        <input v-model="description" id="description" placeholder="your blog" />
+        <button type="submit">Submit Blog</button>
     </form>
 </template>
 
 <script>
     import axios from 'axios'
+    import { mapGetters } from 'vuex'
+    
     export default {
         name: 'CreateBlog',
-        props: {
-            userId: {
-                type: [Number, String],
-                required: true
-            }
-        },
+        computed: {
+        ...mapGetters(['username', 'user'])
+    },
         data() {
             return {
-                blogTitle: "",
-                blogContent: ""
+                title: "",
+                description: "",
+                userData: null,
+                error: null,
+                loading: false
             };
         },
         async mounted() {
-            const userId = Number(this.userId)
-            if (isNaN(this.userId)) {
-                throw new Error("well, this isn't working right...")
-            }
-            let blogCreate = await axios.post(`http://localhost:8000/api/users/${this.userId}/items/`, {
-                params: {
-                    id: userId
+            try {
+                const token = localStorage.getItem('access_token');
+                if (!token) {
+                    throw new Error('no token found');
                 }
-            });
+                let userDataResponse = await axios.get('http://localhost:8000/users/me', {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                console.log("response data:", userDataResponse)
+                this.userData = userDataResponse.data
+                console.log(this.userData)
+            } catch (error) {
+                console.error('Error creating blog', error)
+                this.error = error.message;
+                const token = localStorage.getItem('access_token');
+                console.log(token)
+            } finally {
+                this.loading = false;
+            }
+        },
+        methods: {
+            async postBlog() {
+                if (!this.title || !this.description || !this.userData) {
+                    alert('Please fill out all the fields');
+                    return;
+                }
+                const token = localStorage.getItem('access_token');
+                if (!token) {
+                    throw new Error('no token found');
+                }
+                const blogData = {
+                    title: this.title,
+                    description: this.description
+                }
+                try {
+                    const blogCreate = await axios.post(`http://localhost:8000/api/users/${this.userData.id}/items/`, blogData, {
+                        headers: {
+                            'Authorization': `Bearer ${token}`,
+                            'Content-Type': 'application/json'
+                        }
+                });
+            } catch (error) {
+                console.error('Error creating blog', error)
+                alert('Failed to create blog. do something else')
+            }
         }
     }
+}
 </script>

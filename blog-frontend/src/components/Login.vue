@@ -8,6 +8,7 @@ export default {
         return {
             localUsername: '',
             password: '',
+            userId: null
         };
     },
     computed: {
@@ -32,8 +33,9 @@ export default {
             }
             });
             if (response.status === 200) {
-                const token = response.data.access_token
-                this.loginUser({ username: this.localUsername, token });
+                const { access_token } = response.data;
+                this.loginUser({ username: this.localUsername, token: access_token });
+                console.log(response.data)
             } else {
                 alert(response.data.detail);
             }
@@ -52,17 +54,16 @@ export default {
 <template>
     <div v-if="!user">
         <form @submit.prevent="login">
-            <h2>Login</h2>
-            <input v-model="localUsername" id="username" placeholder="username" /><br>
+            <h3>Login</h3>
+            <input v-model="localUsername" id="username" placeholder="username" />
             <input v-model="password" id="password" type="password" placeholder="password" /><br>
-            <button type="submit">Login</button><br>
-            <RouterLink to="CreateAccount">Create Account</RouterLink>
+            <button type="submit">Login</button>
+            <RouterLink to="CreateAccount"> or Create Account</RouterLink>
         </form>
     </div>
     <div v-else>
-        <h1>Welcome, {{ username }}</h1>
-        <RouterLink to="ListMyBlogs">My Blogs</RouterLink><br>
-        <button @click="logout">logout</button>
+        <p>Welcome, {{ username }}! <button @click="logout">logout</button></p>
+        
     </div>
 
 </template>
