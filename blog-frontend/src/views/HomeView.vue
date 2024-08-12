@@ -1,9 +1,24 @@
 <template>
-    <Login />
     <div v-if='user'>
-        <h1>Welcome Dear Reader</h1>
-        <RouterLink to="../ListUsers">List of Authors</RouterLink>
-
+        <h2>{{ this.user.username }}'s Homepage</h2>
+        <ul>
+            <li><RouterLink :to="{ name: 'ListMyBlogs', params: { userId: this.user.id } }">View or update my blogs</RouterLink></li>
+            <li><RouterLink to="../ListUsers">Read blogs by select authors</RouterLink>   </li>  
+            <li><RouterLink to="../CreateBlog">Write a new blog</RouterLink></li>     
+        </ul>
+    </div>
+    <div v-else>
+        <h2>Login to:</h2>
+        <ul>
+            <li>write/edit your own blog</li>
+            <li>leave a comment on someone else's blog </li>
+        </ul>
+        <h2> Without an account, you can:</h2>
+        <ul>
+            <li>
+                <RouterLink to="../ListUsers">Read blogs by select authors</RouterLink>
+            </li>
+        </ul>
     </div>
 </template>
 
@@ -11,20 +26,21 @@
 <script>
 import axios from "axios"
 import { RouterLink } from "vue-router";
-import Login from '../components/Login.vue';
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
     name: "home",
-    components: {
-        Login
+    computed: {
+        ...mapGetters(['username', 'user']),
+        username() {
+            return this.username
+        }
     },
     data() 
     {
         return {
             accounts:[],
-            items:[],
-            user: null
-
+            items:[]
         }
     },
     async mounted() 

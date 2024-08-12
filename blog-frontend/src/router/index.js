@@ -5,6 +5,7 @@ import ListBlogsByUser from '@/views/ListBlogsByUser.vue'
 import DetailBlog from '@/views/DetailBlog.vue'
 import CreateAccount from '../views/CreateAccount.vue'
 import ListMyBlogs from '../views/ListMyBlogs.vue'
+import CreateBlog from '../views/CreateBlog.vue'
 
 
 const router = createRouter({
@@ -42,6 +43,11 @@ const router = createRouter({
       name: "ListMyBlogs",
       component: ListMyBlogs,
       props: true
+    },
+    {
+      path: "/CreateBlog",
+      name: "CreateBlog",
+      component: CreateBlog
     }
   ]
 })

@@ -5,10 +5,10 @@ import Login from './components/Login.vue'
 
 <template>
   <header>
-    
     <div class="wrapper">
       <nav>
         <RouterLink to="/">Home</RouterLink>
+        <Login />
       </nav>
     </div>
   </header>
