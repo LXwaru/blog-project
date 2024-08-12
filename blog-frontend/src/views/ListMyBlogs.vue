@@ -1,8 +1,8 @@
 <template>
     <div>
         <h1>{{ username }}'s blogs</h1>
+        <h3>View/Edit which blog?</h3>
         <div v-for="item in items">
-            <h3>View/Edit which blog?</h3>
             <ul>
                 <li><RouterLink :to="{ name: 'DetailBlog', params: { itemId: item.id } }">{{ item.title }}</RouterLink></li>
             </ul>
