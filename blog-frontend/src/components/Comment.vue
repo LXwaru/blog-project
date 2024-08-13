@@ -1,12 +1,12 @@
 <template>
     <div class="comment-component">
         <div v-for="comment in this.comments">
-            <p class="comment-box">{{ comment.content }} - {{ this.commenter_username }}</p>
+            <p class="comment-box">{{ comment.content }} - {{ comment.commenter_username }}</p>
         </div>
         <div v-if="user">
             <textarea v-if="showInput" type="text" v-model="inputValue" placeholder="leave a comment" rows="5" cols="45"></textarea><br>
-            <button v-if="showInput" @click="toggleInput">post comment</button>
-            <button v-else @click="postComment">Leave a comment</button>
+            <button v-if="showInput" @click="postComment">post comment</button>
+            <button v-else @click="toggleInput">Leave a comment</button>
         </div>
     </div>
 </template>
@@ -33,7 +33,7 @@ export default {
     data() {
             return {
                 comments: [],
-                userData: null,
+                userData: {},
                 error: null,
                 loading: false,
                 showInput: false,
@@ -52,7 +52,7 @@ export default {
                         'Authorization': `Bearer ${token}`
                     }});
                 this.userData = userDataResponse.data
-                console.log(this.userData)
+                console.log("user data:", this.userData)
             } catch (error) {
                 console.error('there is no user logged in. you cannot leave a comment', error)
                 this.error = error.message;
@@ -72,18 +72,17 @@ export default {
             }
             const commentData = {
                 content: this.inputValue,
-                commenter_username: this.userData.username
             }
-            console.log("comment posted", commentData)
-            alert("blog successfully created")
             try {
                 const token = localStorage.getItem('access_token');
-                await axios.post(`http://localhost:8000/api/${this.blogId}/${this.userData.id}`, commentData, {
+                await axios.post(`http://localhost:8000/api/${this.blogId}/${this.userData.username}/comment/`, commentData, {
                     headers: {
                         'Authorization': `Bearer ${token}`,
                         'Content-Type': 'application/json'
                     }
                 });
+                console.log("comment posted", commentData)
+                alert("comment successfully created")
                 this.inputValue = '';
                 this.toggleInput();
             } catch (error) {

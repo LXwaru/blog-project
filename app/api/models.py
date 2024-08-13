@@ -35,7 +35,7 @@ class Comment(Base):
 
     id = Column(Integer, primary_key=True)
     content = Column(String, index=True)
-    commenter_id = Column(Integer, ForeignKey("users.id"))
+    commenter_username = Column(String, ForeignKey("users.username"))
     item_id = Column(Integer, ForeignKey("items.id"))
 
     commenter = relationship("User", back_populates="comments")

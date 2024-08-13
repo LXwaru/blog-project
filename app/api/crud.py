@@ -61,10 +61,10 @@ def get_comments_by_item_id(
 def post_comment_on_blog(
         db: Session,
         item_id: int,
-        user_id: int,
+        commenter_username: str,
         comment: schemas.CommentCreate
 ):
-    db_comment = models.Comment(**comment.model_dump(), commenter_id=user_id, item_id=item_id)
+    db_comment = models.Comment(**comment.model_dump(), commenter_username=commenter_username, item_id=item_id)
     db.add(db_comment)
     db.commit()
     db.refresh(db_comment)
