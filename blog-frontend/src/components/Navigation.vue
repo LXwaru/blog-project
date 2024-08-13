@@ -15,7 +15,6 @@ export default {
 <template>
     <div v-if="user">
         <nav>
-            <hr>
             <RouterLink to="/">Home</RouterLink>
             <hr>
             <RouterLink to="ListMyBlogs">View / Edit My Blogs</RouterLink>
