@@ -81,12 +81,19 @@ export default {
                         'Content-Type': 'application/json'
                     }
                 });
-                console.log("comment posted", commentData)
-                alert("comment successfully created")
                 this.inputValue = '';
                 this.toggleInput();
+                window.location.reload();
             } catch (error) {
                 console.error('error posting comment', error)
+            }
+        },
+        async fetchComments() {
+            try {
+                const commentResponse = await axios.get(`http://localhost:8000/api/${this.blogId}/comments`)
+                this.comments = commentResponse.data;
+            } catch (error) {
+                console.error('error fetching comments', error)
             }
         }
     }
