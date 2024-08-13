@@ -13,17 +13,17 @@ from sqlalchemy.orm import Session
 router = APIRouter()
 
 
-@router.post("/api/{item_id}/{user_id}/comment/", response_model=schemas.Comment)
+@router.post("/api/{item_id}/{commenter_username}/comment/", response_model=schemas.Comment)
 def post_comment(
     item_id: int,
-    user_id: int,
+    commenter_username: str,
     comment: schemas.CommentCreate,
     db: Session = Depends(utils_db.get_db)
 ):
     return crud.post_comment_on_blog(
     db, 
     item_id=item_id, 
-    user_id=user_id,
+    commenter_username=commenter_username,
     comment=comment)
 
 @router.get("/api/{item_id}/comments/", response_model=list[schemas.Comment])

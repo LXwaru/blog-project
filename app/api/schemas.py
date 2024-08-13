@@ -30,7 +30,7 @@ class CommentCreate(CommentBase):
 
 class Comment(CommentBase):
     id: int
-    commenter_id: int
+    commenter_username: str
     item_id: int
 
     class Config:
