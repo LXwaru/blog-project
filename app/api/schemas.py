@@ -20,6 +20,23 @@ class Item(ItemBase):
         orm_mode = True
 
 
+class CommentBase(BaseModel):
+    content: str
+
+
+class CommentCreate(CommentBase):
+    pass
+
+
+class Comment(CommentBase):
+    id: int
+    commenter_id: int
+    item_id: int
+
+    class Config:
+        orm_mode = True
+
+
 class UserBase(BaseModel):
     username: str
 

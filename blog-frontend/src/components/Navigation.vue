@@ -28,7 +28,6 @@ export default {
     </div>
     <div v-else>
         <nav>
-            <hr>
             <RouterLink to="/">Home</RouterLink>
             <hr>
             <RouterLink to="ListUsers">See All Authors</RouterLink>

@@ -51,3 +51,21 @@ def get_items_by_owner_id(
         owner_id: int
 ):
     return db.query(models.Item).filter(models.Item.owner_id == owner_id)
+
+def get_comments_by_item_id(
+        db: Session,
+        item_id: int
+):
+    return db.query(models.Comment).filter(models.Comment.item_id == item_id)
+
+def post_comment_on_blog(
+        db: Session,
+        item_id: int,
+        user_id: int,
+        comment: schemas.CommentCreate
+):
+    db_comment = models.Comment(**comment.model_dump(), commenter_id=user_id, item_id=item_id)
+    db.add(db_comment)
+    db.commit()
+    db.refresh(db_comment)
+    return db_comment

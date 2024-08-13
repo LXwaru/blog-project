@@ -54,7 +54,12 @@ const router = createRouter({
       path: '/Navigation',
       name: 'Navigation',
       component: Navigation
-    }
+    },
+    // {
+    //   path: "/Comment",
+    //   name: "Comment",
+    //   component: Comment
+    // }
   ]
 })
 

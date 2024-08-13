@@ -15,6 +15,7 @@ class User(Base):
     is_active = Column(Boolean, default=True)
 
     items = relationship("Item", back_populates="owner")
+    comments = relationship("Comment", back_populates="commenter")
 
 
 class Item(Base):
@@ -26,6 +27,19 @@ class Item(Base):
     owner_id = Column(Integer, ForeignKey("users.id"))
 
     owner = relationship("User", back_populates="items")
+    comments = relationship("Comment", back_populates="item")
+
+
+class Comment(Base):
+    __tablename__ = "comments"
+
+    id = Column(Integer, primary_key=True)
+    content = Column(String, index=True)
+    commenter_id = Column(Integer, ForeignKey("users.id"))
+    item_id = Column(Integer, ForeignKey("items.id"))
+
+    commenter = relationship("User", back_populates="comments")
+    item = relationship("Item", back_populates="comments")
 
 
 class HttpError(BaseModel):
