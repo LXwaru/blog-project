@@ -1,13 +1,14 @@
 from fastapi import Depends, FastAPI, Request, Response
 from fastapi.middleware.cors import CORSMiddleware
 from .database import SessionLocal
-from . import router_users, router_items, router_sec
+from . import router_users, router_items, router_sec, router_comments
 
 
 app = FastAPI()
 app.include_router(router_users.router, tags=["USERS"])
 app.include_router(router_items.router, tags=["ITEMS"])
 app.include_router(router_sec.router, tags=["SECURITY"])
+app.include_router(router_comments.router, tags=["COMMENTS"])
 origins = [
     "http://localhost:5173",
 ]

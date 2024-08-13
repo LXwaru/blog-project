@@ -40,8 +40,6 @@
             } catch (error) {
                 console.error('Error creating blog', error)
                 this.error = error.message;
-                const token = localStorage.getItem('access_token');
-                console.log(token)
             } finally {
                 this.loading = false;
             }

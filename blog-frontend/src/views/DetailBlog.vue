@@ -2,13 +2,19 @@
     <div>
         <h1>{{ item.title }}</h1>
         <p>{{ item.description }}</p>
+        <Comment :blogId="blogId"/>
     </div>
 </template>
 
 <script>
 import axios from "axios"
+import Comment from "@/components/Comment.vue";
+
 export default {
     name: "BlogDetails",
+    components: {
+        Comment
+    },
     props: 
     {
         itemId: {
@@ -16,8 +22,12 @@ export default {
         required: true
         }
     },
-    data() 
-    {
+    computed: {
+        blogId() {
+            return parseInt(this.$route.params.itemId, 10)
+        }
+    },
+    data() {
         return {
             item: {}
         }
