@@ -7,6 +7,7 @@ import CreateAccount from '../views/CreateAccount.vue'
 import ListMyBlogs from '../views/ListMyBlogs.vue'
 import CreateBlog from '../views/CreateBlog.vue'
 import Navigation from '../components/Navigation.vue'
+import ListBlogs from '../views/ListBlogs.vue'
 
 
 const router = createRouter({
@@ -55,11 +56,12 @@ const router = createRouter({
       name: 'Navigation',
       component: Navigation
     },
-    // {
-    //   path: "/Comment",
-    //   name: "Comment",
-    //   component: Comment
-    // }
+    {
+      path: "/ListBlogs",
+      name: "ListBlogs",
+      component: ListBlogs,
+      props: true
+    }
   ]
 })
 

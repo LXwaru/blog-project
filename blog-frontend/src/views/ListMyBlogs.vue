@@ -7,7 +7,6 @@
                 <li><RouterLink :to="{ name: 'DetailBlog', params: { itemId: item.id } }">{{ item.title }}</RouterLink></li>
             </ul>
         </div>
-        <!-- Add a loading message or error message for better UX -->
         <div v-for="item in items">
 
         </div>
@@ -43,7 +42,6 @@ export default {
             })
             
             this.userData = userDataResponse.data
-            console.log(typeof this.userData.id)
             let itemResult = await axios.get(`http://localhost:8000/api/users/${this.user_id}/items`, {
                 params: {
                     owner_id: this.userData.id

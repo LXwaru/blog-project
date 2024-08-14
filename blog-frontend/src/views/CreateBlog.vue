@@ -35,7 +35,6 @@
                         'Authorization': `Bearer ${token}`
                     }
                 });
-                console.log("response data:", userDataResponse)
                 this.userData = userDataResponse.data
             } catch (error) {
                 console.error('Error creating blog', error)

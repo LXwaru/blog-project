@@ -28,7 +28,6 @@ export default {
     {   
         try {
             let userResult= await axios.get("http://localhost:8000/api/users/")
-            console.log(userResult.data)
             this.users=userResult.data
         } catch (error) {
             console.error('Error fetching users:', error)

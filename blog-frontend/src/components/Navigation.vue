@@ -17,11 +17,13 @@ export default {
         <nav>
             <RouterLink to="/">Home</RouterLink>
             <hr>
-            <RouterLink to="ListMyBlogs">View / Edit My Blogs</RouterLink>
+            <RouterLink to="/ListBlogs">Read all blogs</RouterLink>
             <hr>
-            <RouterLink to="CreateBlog">Write a New Blog</RouterLink>
+            <RouterLink to="/ListMyBlogs">View / Edit My Blogs</RouterLink>
             <hr>
-            <RouterLink to="ListUsers">See All Authors</RouterLink>
+            <RouterLink to="/CreateBlog">Write a New Blog</RouterLink>
+            <hr>
+            <RouterLink to="/ListUsers">See All Authors</RouterLink>
             <hr>
         </nav>
     </div>
@@ -29,7 +31,7 @@ export default {
         <nav>
             <RouterLink to="/">Home</RouterLink>
             <hr>
-            <RouterLink to="ListUsers">See All Authors</RouterLink>
+            <RouterLink to="/ListUsers">See All Authors</RouterLink>
             <hr>
         </nav>
     </div>
