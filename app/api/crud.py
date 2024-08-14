@@ -1,4 +1,5 @@
 from sqlalchemy.orm import Session
+from sqlalchemy.exc import NoResultFound
 from . import models, schemas, utils_sec
 
 
@@ -28,6 +29,17 @@ def create_user(db: Session, user: schemas.UserCreate):
     db.commit()
     db.refresh(db_user)
     return db_user
+
+def delete_user(db: Session, user_id: int):
+    try:
+        user = db.query(models.User).filter(models.User.id == user_id).one()
+        db.delete(user)
+        db.commit()
+        return{"detail": "User successfully deleted"}
+    except NoResultFound:
+        db.rollback()
+        return {"detail": "User not found"}
+
 
 
 def get_items(db: Session, skip: int = 0, limit: int = 100):
