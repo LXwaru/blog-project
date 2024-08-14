@@ -11,11 +11,27 @@ export default {
             userId: null
         };
     },
+    async mounted() {
+        if (this.user) {
+            try {
+                const token = this.$store.state.user.token;
+                const userData = await axios.get('http://localhost:8000/users/me/', {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                })
+                this.userId = userData.data.id
+            } catch (error) {
+                console.error("can't get userData", error)
+            }
+        }
+    },
     computed: {
         ...mapGetters(['username', 'user']),
         username() {
-            return this.user ? this.user.username : this.username
-        }
+            return this.user ? this.user.username : this.localUsername
+            // console.log(user)
+        } 
     },
     created() {
         this.$store.dispatch('initializeUser');
@@ -30,8 +46,8 @@ export default {
             }), {
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
-            }
-            });
+            } 
+            }); 
             if (response.status === 200) {
                 const { access_token } = response.data;
                 this.loginUser({ username: this.localUsername, token: access_token });
@@ -46,8 +62,17 @@ export default {
         },
         async logout() {
             await this.logoutUser();
-            alert('user logged out')
             this.$router.push('/')
+        },
+        async deleteAccount() {
+            try{
+                axios.delete(`http://localhost:8000/api/user/${this.userId}`)
+                alert('account successfully deleted')
+                await this.logoutUser();
+                this.$router.push('/')
+            } catch (error) {
+                console.error("error deleting account", error)
+            }
         }
     }
 };
@@ -64,7 +89,9 @@ export default {
         </form>
     </div>
     <div v-else class="some-space">
-        <p>Welcome, {{ username }}! <button @click="logout">logout</button></p>
+        <p>Welcome, {{ username }}! <button @click="logout">logout</button></p><br>
+        <button @click="deleteAccount">delete my account</button>
+
         
     </div>
 

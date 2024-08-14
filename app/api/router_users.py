@@ -40,3 +40,10 @@ def read_user(
 ):
     db_user = crud.get_user(db, user_id=user_id)
     return db_user
+
+@router.delete("/api/user/{user_id}")
+def delete_user(
+    user_id: int,
+    db: Session = Depends(utils_db.get_db)
+):
+    return crud.delete_user(db, user_id)
