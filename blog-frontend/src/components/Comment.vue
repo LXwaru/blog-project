@@ -1,5 +1,6 @@
 <template>
     <div class="comment-component">
+        <p>comments:</p>
         <div v-for="comment in this.comments">
             <p class="comment-box">{{ comment.content }} - {{ comment.commenter_username }}</p>
         </div>
@@ -43,7 +44,6 @@ export default {
     async mounted() {
         const commentResponse = await axios.get(`http://localhost:8000/api/${this.blogId}/comments`)
         this.comments = commentResponse.data
-        console.log(this.comments)
         if (this.user) {              
             try {
                 const token = localStorage.getItem('access_token');
@@ -52,7 +52,6 @@ export default {
                         'Authorization': `Bearer ${token}`
                     }});
                 this.userData = userDataResponse.data
-                console.log("user data:", this.userData)
             } catch (error) {
                 console.error('there is no user logged in. you cannot leave a comment', error)
                 this.error = error.message;

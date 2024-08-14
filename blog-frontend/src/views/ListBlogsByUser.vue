@@ -43,8 +43,6 @@ export default {
                 id: userId
             }
         })
-            console.log(itemResults.data);
-            console.log(userResults.data);
             this.items = itemResults.data;
             this.user = userResults.data;
     }

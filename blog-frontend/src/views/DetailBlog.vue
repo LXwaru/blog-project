@@ -46,7 +46,6 @@ export default {
         }
         )
         this.item = itemDetails.data
-        console.log(itemDetails.data)
     }
 }
 </script>
