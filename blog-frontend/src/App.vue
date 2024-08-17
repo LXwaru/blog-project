@@ -10,7 +10,6 @@ import Navigation from './components/Navigation.vue';
       <nav>
         <Navigation />
         <Login />
-        <hr>
       </nav>
     </div>
   </header>
